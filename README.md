@@ -15,5 +15,5 @@ Developers:
 * [Victor Hugo](https://github.com/Mashslek)
 * [Fabricio Moura](https://github.com/fabriciordm)
 * [Wendell Araujo](https://github.com/wendellaraujo)
-* Lucas Franklin Silva
+* [Lucas Franklin Silva](https://github.com/lucasfranklinsilva)
 * Ackyla Ferreira Batista
