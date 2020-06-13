@@ -13,7 +13,6 @@
   font-size: 1em;
 }
 .search__area{
-  background-color: #f9f9f9;
   height: 3.5em;
   border-bottom: 2px solid #a9a9a921;
 }
@@ -31,9 +30,7 @@
 
 
 .search__section{
-  background-color: #f9f9f9;
   height: 100vh;
-  display: inline-block;
 }
 .results__item{
   display: flex;

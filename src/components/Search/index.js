@@ -2,7 +2,6 @@ import React from 'react'
 import { ArrowLeft } from 'react-feather'
 
 import './styles.css'
-import img from '../product.jpg'
 
 
 export default function Search() {
@@ -26,7 +25,7 @@ export default function Search() {
 
                <li className="results__item">
                   <div className="item__image">
-                     <img src={img} />
+                     <img src="" />
                   </div>
 
                   <div className="item__details">

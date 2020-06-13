@@ -14,6 +14,7 @@ li{
 }
 body{
   font-family: 'Roboto', sans-serif;
+  background-color: #f7f7f7;
 }
 header{
   background-color: white;
@@ -57,4 +58,28 @@ button, svg{
     width: 25%;
     margin-left: auto;
   }
+
+  .product{
+    width: 50%;
+  }
+  .product__size:hover{
+    background-color: #a9a9a9;
+  }
+  .product__container--window{
+    display: flex;
+    margin: 1em 3em;
+  }
+  .product__container{
+    width: 50%;
+    margin-left: 1em;
+  }
+  .product__addToBag .addToBag__button{
+    position: initial;
+    width: 20rem;
+    margin-top: 2em;
+  }
+  .addToBag__button:hover{
+    opacity: 80%;
+  }
+  
 }
