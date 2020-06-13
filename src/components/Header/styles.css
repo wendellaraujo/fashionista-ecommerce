@@ -1,0 +1,35 @@
+.header__container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5em;
+}
+.header__logo{
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  box-shadow: 2px 1px 5px -2px;
+}
+.header__search{
+  margin-left: auto;
+  margin-right: 1em;
+}
+.header__shoppingBag{
+  position: relative;
+  background-color: transparent;
+}
+.header__counter{
+  overflow: hidden;
+  position: absolute;
+  right: -.5rem;
+  top: 0;
+  height: 1.2rem;
+  border-radius: 50px;
+  width: 1.2rem;
+  background: #cf3838;
+  color: #fff;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+}

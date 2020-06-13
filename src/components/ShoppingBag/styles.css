@@ -1,0 +1,90 @@
+.shoppingBag__container{
+  background-color: #f9f9f9;
+  height: 100vh;
+}
+.bag__header{
+  display: flex;
+  height: 3.5em;
+  align-items: center;
+}
+.bag__title{
+  font-weight: bold;
+  margin-left: 1em;
+  font-size: 1em;
+}
+
+
+
+.shoppingList{
+  background-color: #f9f9f9;
+  margin-bottom: 3em;
+}
+.shoppingList__item{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+  border-bottom: 1px solid #a7a7a770;
+}
+.item__image{
+  width: 30%;
+  margin-bottom: 1em;
+}
+.item__image img{
+  width: 100%
+}
+.remove{
+  color: #cf3838;
+  font-size: .9em;
+  background-color: transparent;
+  outline: none;
+}
+.item__details{
+  width: 40%;
+}
+.details__title{
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: .9em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.details__size{
+  font-size: .9em;
+  color: #a7a7a7;
+  margin-top: .5em;
+  display: block;
+}
+.details__quantity{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1em;
+  font-size: 1.5em;
+  width: 70%;
+}
+.quantity__button:hover{
+    color: #cf3838;
+}
+.item__price{
+  width: 25%;
+  text-align: right;
+}
+.price__total{
+  font-weight: bold;
+  letter-spacing: -1px;
+  display: block;
+}
+.price__installments{
+  font-size: .8em;
+  color: #a7a7a7;
+}
+.bag__footer{
+  position: fixed;
+  bottom: 0;
+  background-color: #212529;
+  color: #fff;
+  width: 100%;
+  font-weight: bold;
+  padding: 1em 1.5em;
+}
