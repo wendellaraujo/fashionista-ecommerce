@@ -4,12 +4,12 @@ import { ArrowLeft } from 'react-feather'
 import './styles.css'
 
 
-export default function Search() {
+export default function Search(props) {
    return (
       <div className="search__container">
          <header>
             <div className="app__container search__header">
-               <ArrowLeft className="search__return" />
+               <ArrowLeft className="search__return" onClick={props.func} />
                <p className="search__title">Buscar Produtos</p>
             </div>
          </header>
@@ -25,7 +25,7 @@ export default function Search() {
 
                <li className="results__item">
                   <div className="item__image">
-                     <img src="" />
+                     <img src="" alt="" />
                   </div>
 
                   <div className="item__details">

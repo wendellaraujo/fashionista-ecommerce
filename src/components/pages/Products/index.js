@@ -8,6 +8,13 @@ import './styles.css'
 
 
 export default function Products() {
+
+   function hideModal() {
+      document.querySelector('.modals__shoppingBag').classList.add('modals__component--invisible')
+      document.querySelector('.modals__search').classList.add('modals__component--invisible')
+		document.querySelector('.modals').classList.add('modals--invisible')
+   }
+
    return (
       <main className="products">
 
@@ -31,12 +38,12 @@ export default function Products() {
             </ul>
          </div>
 
-         <div className="modals">
-            <div className="modals__component modals__component--invisible" >
-               <Search />
+         <div className="modals modals--invisible">
+            <div className="modals__component modals__search modals__component--invisible" >
+               <Search className="component__search" func={hideModal} />
             </div>
-            <div className="modals__component modals__component--invisible">
-               <ShoppingBag />
+            <div className="modals__component modals__shoppingBag modals__component--invisible">
+               <ShoppingBag className="component__shoppingBag" func={hideModal} />
             </div>
          </div>
       </main>
