@@ -5,12 +5,12 @@ import './styles.css'
 
 
 
-export default function ShoppingBag() {
+export default function ShoppingBag(props) {
    return (
       <div className="shoppingBag__container">
          <header>
             <div className="app__container bag__header">
-               <ArrowLeft className="bag__return" />
+               <ArrowLeft className="bag__return" onClick={props.func} />
                <p className="bag__title">Sacola (0)</p>
             </div>
          </header>
@@ -20,7 +20,7 @@ export default function ShoppingBag() {
 
                <li className="shoppingList__item">
                   <div className="item__image">
-                     <img src="" />
+                     <img src="" alt="" />
                      <button className="remove">Remover item</button>
                   </div>
 
