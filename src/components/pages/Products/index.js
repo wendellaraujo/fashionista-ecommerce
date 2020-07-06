@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom'
 import Search from '../../Search/index'
 import ShoppingBag from '../../ShoppingBag/index'
 
+import { connect } from 'react-redux';
+
+import { setProducts } from '../../../redux/actions/product';
+
+import Catalog from '../../../services/api';
+
+
 import './styles.css'
 
-
-export default function Products() {
+const Products = ({ products }) => {
 
    function hideModal() {
       document.querySelector('.modals__shoppingBag').classList.add('modals__component--invisible')
@@ -49,3 +55,19 @@ export default function Products() {
       </main>
    )
 }
+
+
+const mapStateToProps = state => {
+   return {
+       products: state.catalog.products
+   }
+}
+
+const mapDispatchToProps = (dispatch) => {
+   Catalog.catalog_data().then(data =>{
+       dispatch(setProducts(data));
+   });
+   return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

@@ -1,5 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import {useParams} from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { getProduct } from '../../../redux/actions/product';
+import Catalog from '../../../services/api';
+import { setProducts } from '../../../redux/actions/product';
 
 import './styles.css'
 
@@ -18,35 +23,32 @@ function discount(regular_price, actual_price){
       return '';
 }
 
-function mockGetProducts(productId){
+const Selecteditem = ({item, setProduct}) => {
 
-   let json = require('./data.json');
+   const { code_color } = useParams();
 
-   let product = json.filter(prod => prod.style === productId);
-
-   return product[0];
-}
-
-export default function Product() {
-
-	const { id } = useParams();
-
-   const [Item, setItem] = useState(mockGetProducts(id));
+   useEffect(() => {
+       setProduct(code_color);
+   }, [code_color, setProduct])
 
    return (
+
       <div className="product__container--window">
+
+{item.name !== undefined ? (
+   <>
          <div className="product">
-            <img src={Item.image} alt="" className="product__image"/>
-   <span className="product__discountBadge">{discount(Item.regular_price, Item.actual_price)}</span>
+            <img src={item.image} alt="" className="product__image"/>
+   <span className="product__discountBadge">{discount(item.regular_price, item.actual_price)}</span>
          </div>
          
          <div className="app__container product__container">
-            <h3 className="product__title">{Item.name}</h3>
+            <h3 className="product__title">{item.name}</h3>
 
             <div className="product__price">
-               <span className="product__price--old">{Item.regular_price}</span>
-               <span className="product__price--new">{Item.actual_price}</span>
-               <span className="product__installments">em até {Item.installments}</span>
+               <span className="product__price--old">{item.regular_price === item.actual_price ? '' : item.regular_price}</span>
+               <span className="product__price--new">{item.actual_price}</span>
+               <span className="product__installments">em até {item.installments}</span>
             </div>
 
             <div className="product__sizing">
@@ -54,9 +56,10 @@ export default function Product() {
                <ul className="product__availableSizes">
 
             {
-               Item.sizes.map(
+               item.sizes.map(
                   sizes => {
                      if(sizes.available === true) return <li key={sizes.sku} className="product__size">{sizes.size}</li>
+                     else return '';
                   }
                )
             }
@@ -67,6 +70,27 @@ export default function Product() {
                <button className="addToBag__button">Adicionar à Sacola</button>
             </div>
          </div>
+         </>
+) : ('Not found') }
       </div>
    )
 }
+
+const mapStateToProps = state => {
+   return {
+       item: state.catalog.product,
+   }
+}
+
+const mapDispatchToProps = (dispatch) => {
+   Catalog.catalog_data().then(data =>{
+      dispatch(setProducts(data));
+  });
+   return {
+       setProduct(code_color) {
+           dispatch(getProduct(code_color));
+       }
+   };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Selecteditem);
