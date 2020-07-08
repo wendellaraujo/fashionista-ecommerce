@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Header from '../src/components/Header/index'
-import Products from '../src/components/pages/Products/index'
+import Products from '../src/pages/Products'
 import Product from '../src/components/pages/Product/index'
 
 

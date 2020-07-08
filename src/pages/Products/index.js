@@ -1,13 +1,15 @@
-import React, { UseEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import Product from '../../components/pages/Products'
+import './products.css'
 
-import Search from '../../components/Search'
-import ShoppingBag from '../../components/ShoppingBag'
+const Products = () => {
 
-import './styles.css'
+   function hideModal() {
+      document.querySelector('.modals__shoppingBag').classList.add('modals__component--invisible')
+      document.querySelector('.modals__search').classList.add('modals__component--invisible')
+		document.querySelector('.modals').classList.add('modals--invisible')
+   }
 
-
-export default function Products() {
    const [products, setProducts] = useState([])
    useEffect(() => {
       async function getProducts(){
@@ -20,37 +22,25 @@ export default function Products() {
       }
       getProducts()
    })
-   return (
-      <main className="products">
 
+   return (
+      <section className="products">
          <div className="app__container">
             <p className="products__counter">0 items</p>
 
-            <ul className="products__grid">
+            <div className="products__grid">
+               {products.map( (product, i) =>
+                  <Product 
+                     className="products__box"
+                     {...product}
+                  />
+               )}
                
-               <li>
-                  <Link to="" className="products__product">
-                     <div>
-                        <img className="product__image" src="" alt="" />
-                        <h3 className="product__name">product.name</h3>
-                     </div>
-                     <div className="product__pricing">
-                        <span className="product__price">product.price</span>
-                     </div>
-                  </Link>
-               </li>
 
-            </ul>
-         </div>
-
-         <div className="modals">
-            <div className="modals__component modals__component--invisible" >
-               <Search />
-            </div>
-            <div className="modals__component modals__component--invisible">
-               <ShoppingBag />
             </div>
          </div>
-      </main>
+      </section>
    )
 }
+
+export default Products;
