@@ -1,0 +1,60 @@
+.product{
+  position: relative;
+}
+.product__container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 40vh;
+}
+.product__title{
+  text-transform: uppercase;
+  font-size: 1.5em;
+  margin-bottom: .5em;
+}
+.product__price--new{
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-right: .3em;
+}
+.product__installments{
+  color: #a9a9a9;
+  font-weight: bold;
+}
+.product__sizing{
+  margin-top: 2em;
+}
+.product__sizing span{
+  color: #a9a9a9;
+  margin-bottom: 0.5em;
+  display: inline-block;
+}
+.product__availableSizes{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 7em;
+}
+.product__size{
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid #a9a9a9;
+  border-radius: 6px;
+  padding: .3em;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.addToBag__button{
+  width: 90%;
+  background-color: #212529;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 1em;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 1em;
+  outline: none;
+  transition: 0.2s;
+}
