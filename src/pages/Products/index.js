@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { UseEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Search from '../../components/Search'
@@ -8,6 +8,18 @@ import './styles.css'
 
 
 export default function Products() {
+   const [products, setProducts] = useState([])
+   useEffect(() => {
+      async function getProducts(){
+         fetch("https://undefined.netlify.app/api/catalog")
+         .then(Response => Response.json())
+         .then(json => setProducts(json))
+         .catch(e => {
+            console.log(e)
+         })
+      }
+      getProducts()
+   })
    return (
       <main className="products">
 

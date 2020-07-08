@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Search from '../../Search/index'
@@ -13,7 +13,7 @@ import Catalog from '../../../services/api';
 
 import './styles.css'
 
-const Products = ({ products }) => {
+const Products = ({ }) => {
 
    function hideModal() {
       document.querySelector('.modals__shoppingBag').classList.add('modals__component--invisible')
@@ -21,25 +21,39 @@ const Products = ({ products }) => {
 		document.querySelector('.modals').classList.add('modals--invisible')
    }
 
+   const [products, setProducts] = useState([])
+   useEffect(() => {
+      async function getProducts(){
+         fetch("https://undefined.netlify.app/api/catalog")
+         .then(Response => Response.json())
+         .then(json => setProducts(json))
+         .catch(e => {
+            console.log(e)
+         })
+      }
+      getProducts()
+   })
+
    return (
       <main className="products">
-
          <div className="app__container">
             <p className="products__counter">0 items</p>
 
             <ul className="products__grid">
+               {products.map( product =>
+                  <li>
+                     <Link to="" className="products__product">
+                        <div>
+                           <img className="product__image" src={product.image} alt="" />
+                           <h3 className="product__name">{product.name}</h3>
+                        </div>
+                        <div className="product__pricing">
+                           <span className="product__price">{product.actual_price}</span>
+                        </div>
+                     </Link>
+                  </li>
+               )}
                
-               <li>
-                  <Link to="" className="products__product">
-                     <div>
-                        <img className="product__image" src="" alt="" />
-                        <h3 className="product__name">product.name</h3>
-                     </div>
-                     <div className="product__pricing">
-                        <span className="product__price">product.price</span>
-                     </div>
-                  </Link>
-               </li>
 
             </ul>
          </div>
