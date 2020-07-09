@@ -46,6 +46,9 @@
   cursor: pointer;
 }
 
+.product__size-selected{
+  background-color: #a9a9a9;
+}
 .addToBag__button{
   width: 90%;
   background-color: #212529;
