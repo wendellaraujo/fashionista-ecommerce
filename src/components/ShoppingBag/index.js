@@ -1,16 +1,20 @@
 import React from 'react'
 import { ArrowLeft, MinusSquare, PlusSquare } from 'react-feather'
+import { connect } from 'react-redux';
 
 import './styles.css'
 
+import { setAddToWishList, setRemoveFromWishList, setRemoveOneFromWishList } from '../../redux/actions/product';
 
+const ShoppingBag = ({list, total, setRemoveAll, setAddToCart, setRemoveOne}) => { 
 
-export default function ShoppingBag(props) {
+   console.log(list);
+
    return (
       <div className="shoppingBag__container">
          <header>
             <div className="app__container bag__header">
-               <ArrowLeft className="bag__return" onClick={props.func} />
+               <ArrowLeft className="bag__return" onClick />
                <p className="bag__title">Sacola (0)</p>
             </div>
          </header>
@@ -49,3 +53,26 @@ export default function ShoppingBag(props) {
       </div>
    )
 }
+
+const mapStateToProps = state => {
+   return {
+       total: state.cart.total,
+       list: state.cart.list
+   }
+}
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+       setAddToCart(product, list, size) {
+           dispatch(setAddToWishList(product, list, size));
+       },
+       setRemoveOne(product, list, size) {
+           dispatch(setRemoveOneFromWishList(product, list, size));
+       },
+       setRemoveAll(product, list) {
+           dispatch(setRemoveFromWishList(product, list));
+       }
+   };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingBag);
