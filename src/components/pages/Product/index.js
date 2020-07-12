@@ -2,9 +2,11 @@ import React, {useEffect} from 'react'
 import {useParams} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getProduct } from '../../../redux/actions/product';
-import Catalog from '../../../services/api';
+import { getProduct, setAddToWishList, setContextValue } from '../../../redux/actions/product';
+
 import { setProducts } from '../../../redux/actions/product';
+
+import Catalog from '../../../services/api';
 
 import './styles.css'
 
@@ -23,7 +25,7 @@ function discount(regular_price, actual_price){
       return '';
 }
 
-const Selecteditem = ({item, setProduct}) => {
+const Selecteditem = ({item, list, setAddToCart, setProduct, context, setContext}) => {
 
    const { code_color } = useParams();
 
@@ -31,6 +33,10 @@ const Selecteditem = ({item, setProduct}) => {
        setProduct(code_color);
    }, [code_color, setProduct])
 
+   console.log('List: '+ JSON.stringify(list));
+   console.log('Context: '+ context);
+
+   
    return (
 
       <div className="product__container--window">
@@ -58,16 +64,25 @@ const Selecteditem = ({item, setProduct}) => {
             {
                item.sizes.map(
                   sizes => {
-                     if(sizes.available === true) return <li key={sizes.sku} className="product__size">{sizes.size}</li>
-                     else return '';
-                  }
+                     if(sizes.available === true) {
+                     return <li key={sizes.sku} 
+                     className={sizes.size === context ? 'product__size product__size-selected' : 'product__size'}
+                     onClick={() => setContext(sizes.size)}
+                     >
+                     {sizes.size}
+                     </li>
+                  }}
                )
             }
                </ul>
             </div>
 
             <div className="product__addToBag">
-               <button className="addToBag__button">Adicionar à Sacola</button>
+               <button  onClick={() => setAddToCart(item, list, context)}                            
+                        disabled={context === '' ? true : false}
+                        className="addToBag__button"
+               >
+               Adicionar à Sacola</button>
             </div>
          </div>
          </>
@@ -79,6 +94,8 @@ const Selecteditem = ({item, setProduct}) => {
 const mapStateToProps = state => {
    return {
        item: state.catalog.product,
+       list: state.cart.list,
+       context: state.cart.context
    }
 }
 
@@ -87,8 +104,14 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(setProducts(data));
   });
    return {
+      setAddToCart(item, list, context) {
+         dispatch(setAddToWishList(item, list, context));
+     },
        setProduct(code_color) {
            dispatch(getProduct(code_color));
+       },
+       setContext(context) {
+           dispatch(setContextValue(context));
        }
    };
 }
