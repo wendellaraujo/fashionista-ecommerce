@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+body {
+  background-color: #f9f9f9;
+  color: #212529;
+  font-family: Noto Sans SC,sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  min-height: 100%;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
 *{
   margin: 0;
   padding: 0;
